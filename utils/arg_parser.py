@@ -1,7 +1,4 @@
 import argparse
-from ctypes.wintypes import BOOLEAN
-from xmlrpc.client import boolean
-
 
 def create_parser():
     """
