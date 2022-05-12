@@ -4,6 +4,6 @@
 __pycache__/
 *.pyc
 # parameter checkpoint
-checkpoint/*
+checkpoint/
 # tensorboard logs
 runs/*_heisenberg
