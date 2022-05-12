@@ -1,6 +1,9 @@
+# hidden files
 .data/*
 .vscode
 __pycache__/
 *.pyc
+# parameter checkpoint
 checkpoint/*
+# tensorboard logs
 runs/*_heisenberg
