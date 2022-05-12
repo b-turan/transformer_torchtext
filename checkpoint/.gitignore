@@ -1,0 +1,8 @@
+# .gitignore
+###################
+
+# Ignore
+*_checkpoint.pt
+
+# ... except for this one.
+!.gitignore
