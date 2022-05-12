@@ -1,4 +1,5 @@
 /.data/*
 /.vscode
-/__pycache__
-/checkpoint/*
+__pycache__/
+ *.pyc
+ /checkpoint/*
