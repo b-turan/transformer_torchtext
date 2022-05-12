@@ -1,6 +1,6 @@
 # Main references
 * Attention is all you need - https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
-
+* Github Repo (Tutorial) - https://github.com/bentrevett/pytorch-seq2seq/blob/master/6%20-%20Attention%20is%20All%20You%20Need.ipynb
 # Masterplan
 1. Train transformer on translation tasks for fixed number of epochs
 2. Apply pruning algorithms

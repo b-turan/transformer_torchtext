@@ -45,7 +45,7 @@ ENC_DROPOUT = args.enc_dropout
 DEC_DROPOUT = args.dec_dropout
 # program specific arguments
 SEED = args.seed
-CHECKPOINT_PATH = f'checkpoint/{DATASET}_{args.checkpoint}'
+CHECKPOINT_PATH = f'checkpoint/{DATASET}_checkpoint.pt'
 
 
 random.seed(SEED)

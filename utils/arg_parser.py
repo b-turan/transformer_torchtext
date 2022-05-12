@@ -30,6 +30,5 @@ def create_parser():
 
     # Program arguments (data_path, save_dir, etc.)
     parser.add_argument("--seed", type=int, metavar="", help="Seed Choice", default=1234)
-    parser.add_argument("--checkpoint", type=str, metavar="", help="Checkpoint Name Ending", default='checkpoint.pt')
 
     return parser
