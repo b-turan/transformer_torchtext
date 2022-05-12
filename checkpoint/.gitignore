@@ -1,8 +1,0 @@
-# .gitignore
-###################
-
-# Ignore following files/directories
-*
-
-# ... except for this one.
-!.gitignore
