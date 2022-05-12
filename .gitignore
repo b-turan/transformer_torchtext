@@ -1,5 +1,6 @@
-/.data/*
-/.vscode
+.data/*
+.vscode
 __pycache__/
- *.pyc
- checkpoint/*
+*.pyc
+checkpoint/*_checkpoint.pt
+runs/*_heisenberg
