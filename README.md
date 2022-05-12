@@ -6,7 +6,7 @@
 2. Apply pruning algorithms
 3. Analyze BLEU score before and after pruning
 
-# TODO - Beginning
+# To Do - Beginning
 * [x] Integrate Encoder, Decoder, Seq2Seq Model
 * [x] Add Multimodal Translation Dataset (WMT16 Multi30k Dataset)
 * [x] Add BLEU Metric
