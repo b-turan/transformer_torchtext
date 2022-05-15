@@ -11,4 +11,6 @@
 * [x] Add Multimodal Translation Dataset (WMT16 Multi30k Dataset)
 * [x] Add BLEU Metric
 * [x] Add Training and Evaluation Loop
-* [ ] Add WMT16 News (Developement) Dataset 
+* [ ] Add more Datasets (e.g. WMT16 News)
+    - [ ] Choose framework for dataloaders (HuggingFace vs. Torchtext)
+
