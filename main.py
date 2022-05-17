@@ -83,6 +83,15 @@ def train_epoch(model, iterator, optimizer, criterion, clip):
 
 
 def evaluate(model, iterator, criterion):
+    '''
+    Evaluates model on the entire dataset.
+    ------------------------------------
+    model (nn.model): Torch model
+    iterator (torchtext.dataloader): Dataloader
+    criterion(nn.CrossEntropyLoss): Loss function
+    ------------------------------------
+    returns average epoch loss
+    '''
     model.eval()
     epoch_loss = 0
     with torch.no_grad():

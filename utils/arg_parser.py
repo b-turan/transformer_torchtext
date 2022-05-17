@@ -1,5 +1,6 @@
 import argparse
 
+
 def create_parser():
     """
     Arguments devided into Trainer, Model and Program specific arguments.
