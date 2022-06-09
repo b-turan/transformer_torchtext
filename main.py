@@ -118,6 +118,10 @@ def run_training():
     best_valid_loss = float('inf')
     for epoch in range(N_EPOCHS):
         start_time = time.time()
+
+        # check inference on single sentence from validation dataset
+        translate_single_sentence(valid_data, SRC, TRG, model, device)
+
         train_loss = train_epoch(model, train_iterator, optimizer, criterion, CLIP)
         valid_loss = evaluate(model, valid_iterator, criterion)
         end_time = time.time()
@@ -135,6 +139,10 @@ def run_training():
         writer.add_scalar("Loss/train", train_loss, epoch)
         writer.add_scalar("Loss/valid", valid_loss, epoch)
         writer.add_scalar("BLEU Score", bleu_score, epoch)
+    
+        # check inference on single sentence from validation dataset
+        translate_single_sentence(valid_data, SRC, TRG, model, device)
+
 
 
 def epoch_time(start_time, end_time):

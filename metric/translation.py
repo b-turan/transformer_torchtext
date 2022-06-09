@@ -83,7 +83,7 @@ def calculate_bleu_alt(data, src_field, trg_field, model, device, max_len = 50):
 
 def translate_single_sentence(data, SRC, TRG, model, device):
     # inference on example from validation set 
-    example_idx = 6
+    example_idx = torch.randint(0,100,(1,))
     src = vars(data.examples[example_idx])['src']
     trg = vars(data.examples[example_idx])['trg']
     print(10*'---------')
