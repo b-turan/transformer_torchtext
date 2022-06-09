@@ -13,9 +13,7 @@ import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 
 from dataloader.dataloader import get_data, get_dataloader
-from metric.translation import (calculate_bleu, calculate_bleu_alt,
-                                translate_sentence_vectorized,
-                                translate_single_sentence)
+from metric.translation import calculate_bleu, translate_single_sentence
 from model.architecture import Decoder, Encoder, build_model
 from utils import arg_parser, utils
 from utils.vocab import SRC, TRG
