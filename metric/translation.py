@@ -5,7 +5,7 @@ from nltk.translate import bleu_score
 
 
 def translate_sentence_vectorized(src_tensor, src_field, trg_field, model, device, max_len=50):
-    ''' Vectorized version of translate_sentence (much faster, integrated into main)'''
+    ''' Vectorized version of translate_sentence (much faster, integrated into main.py)'''
     assert isinstance(src_tensor, torch.Tensor)
     model.eval()
     src_mask = model.make_src_mask(src_tensor)
@@ -44,6 +44,8 @@ def translate_sentence_vectorized(src_tensor, src_field, trg_field, model, devic
 
 def calculate_bleu(iterator, src_field, trg_field, model, device, max_len = 50):
     ''' BLEU score for given dataloader '''
+    # blue_score function failed at epoch 16 due to index error
+    # however, function is working again, although reasons yet unknown
     trgs = []
     pred_trgs = []
     with torch.no_grad():
@@ -64,11 +66,12 @@ def calculate_bleu(iterator, src_field, trg_field, model, device, max_len = 50):
             pred_trg, _ = translate_sentence_vectorized(src, src_field, trg_field, model, device)
             pred_trgs += pred_trg
     return pred_trgs, trgs, bleu_score.corpus_bleu(trgs, pred_trgs)
-    # TODO: blue_score function fails at epoch 16 due to index error 
-    # return pred_trgs, trgs, bleu_score(pred_trgs, trgs, max_n=4, weights=[0.25] * 4) 
 
 def calculate_bleu_alt(data, src_field, trg_field, model, device, max_len = 50):
-    ''' Calculate BLEU score for given Dataset (using slower translate_sentence function) '''
+    ''' 
+    Alternative Implementation: 
+    Calculate BLEU score for given Dataset (using slower translate_sentence function) 
+    '''
     trgs = []
     pred_trgs = []
     for datum in data:
@@ -96,7 +99,7 @@ def translate_single_sentence(data, SRC, TRG, model, device):
 
 
 def translate_sentence(sentence, src_field, trg_field, model, device, max_len = 50):
-    '''Translates sentece which is not encoded into torch.tensor ''' 
+    '''Translates sentence which is encoded into torch.tensor ''' 
     model.eval()
     if isinstance(sentence, str):
         nlp = spacy.load('en_core_web_sm')
