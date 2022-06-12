@@ -17,6 +17,7 @@ from metric.translation import calculate_bleu, translate_single_sentence
 from model.architecture import Decoder, Encoder, build_model
 from utils import arg_parser, utils
 from utils.vocab import SRC, TRG
+from tqdm import tqdm
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print("Running on Device:", device)
@@ -58,9 +59,20 @@ def initialize_weights(m):
 
 
 def train_epoch(model, iterator, optimizer, criterion, clip):
+    '''
+    Trains model on the entire dataset for one epoch.
+    ------------------------------------
+    model (nn.model): Torch model
+    iterator (th.dataloader): Dataloader
+    optimizer (th.optim): Optimizer
+    criterion(nn.CrossEntropyLoss): Loss function
+    CLIP (int): Gradient Clipping
+    ------------------------------------
+    returns average epoch loss
+    '''
     model.train()
     epoch_loss = 0
-    for i, batch in enumerate(iterator):
+    for batch in tqdm(iterator):
         src = batch.src
         trg = batch.trg
         optimizer.zero_grad()
@@ -93,7 +105,7 @@ def evaluate(model, iterator, criterion):
     model.eval()
     epoch_loss = 0
     with torch.no_grad():
-        for i, batch in enumerate(iterator):
+        for batch in tqdm(iterator):
             src = batch.src
             trg = batch.trg
             output, _ = model(src, trg[:,:-1])
@@ -183,16 +195,18 @@ if __name__ == "__main__":
     if args.train:
         # perform training and evaluation on training and validation set, respectively
         run_training()
+        print(f'Final Bleu Score Evaluation on Test Set:')
+        pred_trgs, trgs, bleu_score = calculate_bleu(test_iterator, SRC, TRG, model, device)
+        print(f'BLEU score = {bleu_score*100:.2f}')
         writer.flush()
 
-    # run model on test set
-    test_loss = evaluate(model, test_iterator, criterion)
-    print(f'| Test Loss: {test_loss:.3f} | Test PPL: {math.exp(test_loss):7.3f} |')
-
-    # check inference on single sentence from validation dataset
-    translate_single_sentence(valid_data, SRC, TRG, model, device)
-
-    # calculate BLEU score on test dataset 
-    print(f'Final Bleu Score Evaluation on Test Set:')
-    pred_trgs, trgs, bleu_score = calculate_bleu(test_iterator, SRC, TRG, model, device)
-    print(f'BLEU score = {bleu_score*100:.2f}')
+    else: 
+        # run model on test set
+        test_loss = evaluate(model, test_iterator, criterion)
+        print(f'| Test Loss: {test_loss:.3f} | Test PPL: {math.exp(test_loss):7.3f} |')
+        # check inference on single sentence from validation dataset
+        translate_single_sentence(valid_data, SRC, TRG, model, device)
+        # calculate BLEU score on test dataset 
+        print(f'Final Bleu Score Evaluation on Test Set:')
+        pred_trgs, trgs, bleu_score = calculate_bleu(test_iterator, SRC, TRG, model, device)
+        print(f'BLEU score = {bleu_score*100:.2f}')
