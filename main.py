@@ -11,13 +11,13 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
+from tqdm import tqdm
 
 from dataloader.dataloader import get_data, get_dataloader
 from metric.translation import calculate_bleu, translate_single_sentence
 from model.architecture import Decoder, Encoder, build_model
 from utils import arg_parser, utils
 from utils.vocab import SRC, TRG
-from tqdm import tqdm
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print("Running on Device:", device)
@@ -54,6 +54,12 @@ torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 
 def initialize_weights(m):
+    ''' 
+    Modifies weight initialization,
+    https://machinelearningmastery.com/weight-initialization-for-deep-learning-neural-networks/.
+    ------------------------------------
+    Returns initialized model 'm'
+    '''
     if hasattr(m, 'weight') and m.weight.dim() > 1:
         nn.init.xavier_uniform_(m.weight.data)
 
