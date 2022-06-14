@@ -162,13 +162,13 @@ def run_training():
         translate_single_sentence(valid_data, SRC, TRG, model, device)
 
 
-
 def epoch_time(start_time, end_time):
     ''' Returns elapsed time in minutes and seconds. '''
     elapsed_time = end_time - start_time
     elapsed_mins = int(elapsed_time / 60)
     elapsed_secs = int(elapsed_time - (elapsed_mins * 60))
     return elapsed_mins, elapsed_secs
+
 
 def load_checkpoint(PATH):
     model.load_state_dict(torch.load(PATH))
