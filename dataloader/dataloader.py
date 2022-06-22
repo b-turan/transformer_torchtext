@@ -38,8 +38,8 @@ def get_data(dataset):
         test_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
     elif dataset == 'testwmt14':
         # TODO: Check if WMT14 class implemetation is correct
-        train_data = WMT14(path='.data/wmt14/train', exts=('.en', '.de'), fields=(SRC, TRG)) # takes 10min to execute
-        valid_data = WMT14(path='.data/wmt14/newtest2015', exts=('.en'), fields=(SRC, TRG))
+        # train_data = WMT14(path='.data/wmt14/train', exts=('.en', '.de'), fields=(SRC, TRG)) # takes 10min to execute
+        valid_data = WMT14(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
         test_data = None
     return train_data, valid_data, test_data
 
