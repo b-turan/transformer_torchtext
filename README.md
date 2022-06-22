@@ -13,5 +13,5 @@
 * [x] Add Training and Evaluation Loop
 * [ ] Add more Datasets (e.g. WMT16 News)
     - [x] Choose framework for dataloaders (HuggingFace vs. Torchtext)
-    - [ ] add WMT14 by TranslationDataset class and test
-    - [ ] add WMT14 by WMT14 class and test
+    - [x] add WMT14 by TranslationDataset class and test
+    - [x] add WMT14 by WMT14 class and test
