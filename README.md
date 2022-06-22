@@ -12,5 +12,6 @@
 * [x] Add BLEU Metric
 * [x] Add Training and Evaluation Loop
 * [ ] Add more Datasets (e.g. WMT16 News)
-    - [ ] Choose framework for dataloaders (HuggingFace vs. Torchtext)
-
+    - [x] Choose framework for dataloaders (HuggingFace vs. Torchtext)
+    - [ ] add WMT14 by TranslationDataset class and test
+    - [ ] add WMT14 by WMT14 class and test
