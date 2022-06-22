@@ -4,6 +4,7 @@ https://github.com/bentrevett/pytorch-seq2seq/blob/master/6%20-%20Attention%20is
 '''
 
 import math
+import os
 import random
 import time
 
@@ -18,6 +19,8 @@ from metric.translation import calculate_bleu, translate_single_sentence
 from model.architecture import Decoder, Encoder, build_model
 from utils import arg_parser, utils
 from utils.vocab import SRC, TRG
+
+# os.environ['CUDA_LAUNCH_BLOCKING'] = "1" # due to CUDA error appearing in WMT14
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print("Running on Device:", device)
