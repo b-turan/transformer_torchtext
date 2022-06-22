@@ -33,14 +33,15 @@ def get_data(dataset):
     elif dataset == 'wmt14':
         # TODO: Check if implementation of WMT14 data loading is correct
         # train_data = TranslationDataset(path='.data/wmt14/train', exts=('.en', '.de'), fields=(SRC, TRG)) # takes 10min to execute
-        train_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
-        valid_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
-        test_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
+        train_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG)) # for debugging
+        valid_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG)) 
+        test_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG)) # for debugging
     elif dataset == 'testwmt14':
         # TODO: Check if WMT14 class implemetation is correct
         # train_data = WMT14(path='.data/wmt14/train', exts=('.en', '.de'), fields=(SRC, TRG)) # takes 10min to execute
+        train_data = WMT14(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG)) # for debugging
         valid_data = WMT14(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
-        test_data = None
+        test_data = WMT14(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG)) # for debugging
     return train_data, valid_data, test_data
 
 def get_dataloader(train_data, valid_data, test_data, batch_size, device):
