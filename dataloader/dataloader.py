@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 import torch
 from torchtext.data import BucketIterator
-from torchtext.datasets import Multi30k
+from torchtext.datasets import WMT14, Multi30k, TranslationDataset
 from utils import arg_parser
 from utils.vocab import SRC, TRG
 
@@ -30,7 +30,18 @@ def get_data(dataset):
         # WMT16 Multimodal Dataset, see https://www.statmt.org/wmt16/multimodal-task.html
         train_data, valid_data, test_data = Multi30k.splits(exts = ('.en', '.de'), 
                                                             fields = (SRC, TRG))
-        return train_data, valid_data, test_data
+    elif dataset == 'wmt14':
+        # TODO: Check if implementation of WMT14 data loading is correct
+        # train_data = TranslationDataset(path='.data/wmt14/train', exts=('.en', '.de'), fields=(SRC, TRG)) # takes 10min to execute
+        train_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
+        valid_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
+        test_data = TranslationDataset(path='.data/wmt14/newstest2015', exts=('.en', '.de'), fields=(SRC, TRG))
+    elif dataset == 'testwmt14':
+        # TODO: Check if WMT14 class implemetation is correct
+        train_data = WMT14(path='.data/wmt14/train', exts=('.en', '.de'), fields=(SRC, TRG)) # takes 10min to execute
+        valid_data = WMT14(path='.data/wmt14/newtest2015', exts=('.en'), fields=(SRC, TRG))
+        test_data = None
+    return train_data, valid_data, test_data
 
 def get_dataloader(train_data, valid_data, test_data, batch_size, device):
     """
