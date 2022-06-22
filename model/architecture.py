@@ -164,7 +164,8 @@ class Decoder(nn.Module):
         #src_mask = [batch size, 1, 1, src len]        
         batch_size = trg.shape[0]
         trg_len = trg.shape[1]
-        pos = torch.arange(0, trg_len).unsqueeze(0).repeat(batch_size, 1).to(self.device)                    
+        # ATTENTION! CUDA ERROR WITH WMT14 on GPU
+        pos = torch.arange(0, trg_len).unsqueeze(0).repeat(batch_size, 1).to(self.device)                
         #pos = [batch size, trg len]    
         trg = self.dropout((self.tok_embedding(trg) * self.scale) + self.pos_embedding(pos))        
         #trg = [batch size, trg len, hid dim]
